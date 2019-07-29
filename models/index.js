@@ -1,6 +1,6 @@
-const Sequelizer = require('sequelize');
-console.log(process.env.USERNAME);
-const sequelize = new Sequelizer(
+const Sequelize = require('sequelize');
+//TODO make this envirmentment agnostic (check activity 10: sequlize-validations for example)
+const sequelize = new Sequelize(
   {
     database: process.env.DB,
     host: process.env.HOST,
@@ -12,8 +12,8 @@ const sequelize = new Sequelizer(
 );
 
 //require each model and place them into an object here
-const events = require('./events')(sequelize);
-const users = require('./users')(sequelize);
+const events = require('./events')(sequelize, Sequelize);
+const users = require('./users')(sequelize, Sequelize);
 
 const db = {
   sequelize,

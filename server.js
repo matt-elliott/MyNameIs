@@ -19,10 +19,10 @@ app.use(express.json());
 // Static directory
 app.use('assets/', express.static("public"));
 
-apiRoutes(app);
-viewsRoutes(app);
+apiRoutes(app, db);
+viewsRoutes(app, db);
 
-db.sequelize.sync().then(function () {
+db.sequelize.sync({force: true}).then(function () {
   app.listen(port, function () {
     console.log('App Live On Port: ', port);
   });
