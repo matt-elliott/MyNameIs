@@ -5,6 +5,8 @@ const port = process.env.PORT || 8080;
 const Sequelizer = require('sequelizer');
 const sequelize = new Sequelizer(process.env.HOST);
 const hbs = require('express-handlebars');
+const apiRoutes = require('./routes/api');
+const viewsRoutes = require('./routes/views');
 
 app.engine("handlebars", hbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
@@ -16,9 +18,8 @@ app.use(express.json());
 // Static directory
 app.use('assets/', express.static("public"));
 
-app.get('/', function (req, res) {
-  res.render('index');
-})
+apiRoutes(app);
+viewsRoutes(app);
 
 app.listen(port, function () {
   console.log('App Live On Port: ', port);
