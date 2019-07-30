@@ -26,5 +26,7 @@ module.exports = function (sq, DataType) {
       type: DataType.DATE,
       allowNull: false
     }
-  })
+  });
+
+  return Events;
 }

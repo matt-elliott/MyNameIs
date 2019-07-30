@@ -18,13 +18,24 @@ module.exports = function (sq, DataType) {
       type: DataType.STRING,
       allowNull: false
     },
-    profile_img: {
+    username: {
       type: DataType.STRING,
       allowNull: false
     },
-    eventID: {
-      type: DataType.INTEGER,
+    password: {
+      type: DataType.STRING,
       allowNull: false
     },
-  })
+    profile_img: {
+      type: DataType.STRING,
+      allowNull: false,
+      defaultValue: 'http://minervastrategies.com/wp-content/uploads/2016/03/default-avatar.jpg'
+    },
+    eventID: {
+      type: DataType.INTEGER,
+      allowNull: true
+    },
+  });
+
+  return Users;
 }

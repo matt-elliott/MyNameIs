@@ -5,12 +5,13 @@ const sequelize = new Sequelize(
   config[process.env.ENV]
 );
 
-const events = require('./events')(sequelize, Sequelize);const users = require('./users')(sequelize, Sequelize);
+const Events = require('./events')(sequelize, Sequelize);
+const Users = require('./users')(sequelize, Sequelize);
 
 const db = {
   sequelize,
-  events,
-  users
+  Events,
+  Users
 }
 
 module.exports = db;

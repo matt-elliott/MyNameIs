@@ -1,6 +1,9 @@
+require('dotenv').config();
 const express = require('express');
 const app = express();
 const port = process.env.PORT || 8080;
+const config = require('./config/config');
+
 const hbs = require('express-handlebars');
 const apiRoutes = require('./routes/api');
 const viewsRoutes = require('./routes/views');
@@ -22,7 +25,8 @@ app.use(
 apiRoutes(app, db);
 viewsRoutes(app, db);
 
-db.sequelize.sync({force: true}).then(function () {
+//{force: true}
+db.sequelize.sync().then(function () {
   app.listen(port, function () {
     console.log('App Live On Port: ', port);
   });

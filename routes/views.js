@@ -1,9 +1,19 @@
-module.exports = function (app) {
+module.exports = function (app, db) {
   app.get('/', function (req, res) {
     res.render('index');
   });
   app.get('/register', function (req, res) {
     res.render('register');
+  });
+  app.post('/api/register',
+  async function ({body}, res) {
+    try {
+      let result = await db.Users.create(body);
+      console.log('sent:\n', result.dataValues)
+      res.sendStatus(200);  
+    } catch (error) {
+      console.log(error);
+    }
   });
   app.get('/invite', function (req, res) {
     res.render('invite');
