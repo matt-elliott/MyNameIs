@@ -6,23 +6,23 @@ module.exports = function (sq, DataType) {
       primaryKey: true,
       allowNull: false
     },
-    eventName: {
+    name: {
       type: DataType.STRING,
       allowNull: false
     },
-    eventDescription: {
+    description: {
       type: DataType.STRING,
       allowNull: false
     },
-    eventData: {
+    date: {
       type: DataType.DATE,
       allowNull: false
     },
-    eventStartTime: {
+    start_time: {
       type: DataType.DATE,
       allowNull: false
     },
-    eventEndTime: {
+    end_time: {
       type: DataType.DATE,
       allowNull: false
     }

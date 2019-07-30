@@ -5,7 +5,7 @@ module.exports = function (app, db) {
   app.get('/register', function (req, res) {
     res.render('register');
   });
-  app.post('/admin/addevent', async function (req, res) {
+  app.get('/admin/addevent', async function (req, res) {
     res.render('add-event')
   });
   app.get('/invite', function (req, res) {

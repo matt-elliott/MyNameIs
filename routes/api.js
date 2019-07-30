@@ -1,12 +1,18 @@
-module.exports = function (app) {
+module.exports = function (app, db) {
   app.post('/api/addUser', function (req, res) {
     //use sequelize to send data to be added to user table in db
   });
   app.get('/api/users', function (req, res) {
     //return all users for event
   });
-  app.post('/api/addEvent', async function (req, res) {
-    
+  app.post('/api/addEvent', async function ({body}, res) {
+    try {
+      let result = await db.Events.create(body);
+      res.sendStatus(200);
+    } catch (error) {
+      console.log(error);
+      res.sendStatus(500); 
+    }
   });
   app.get('/api/events', function (req, res) {
     //returns all evnets
@@ -18,6 +24,7 @@ module.exports = function (app) {
       res.sendStatus(200);  
     } catch (error) {
       console.log(error);
+      res.sendStatus(500); 
     }
   });
 }
