@@ -5,15 +5,8 @@ module.exports = function (app, db) {
   app.get('/register', function (req, res) {
     res.render('register');
   });
-  app.post('/api/register',
-    async function ({ body }, res) {
-    try {
-      let result = await db.Users.create(body);
-      console.log('sent:\n', result.dataValues)
-      res.sendStatus(200);  
-    } catch (error) {
-      console.log(error);
-    }
+  app.post('/admin/addevent', async function (req, res) {
+    res.render('add-event')
   });
   app.get('/invite', function (req, res) {
     res.render('invite');

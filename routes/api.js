@@ -5,10 +5,19 @@ module.exports = function (app) {
   app.get('/api/users', function (req, res) {
     //return all users for event
   });
-  app.post('/api/addEvent', function (req, res) {
-    //adds event and attaches admin user to it
+  app.post('/api/addEvent', async function (req, res) {
+    
   });
   app.get('/api/events', function (req, res) {
     //returns all evnets
+  });
+  app.post('/api/register',
+    async function ({ body }, res) {
+    try {
+      let result = await db.Users.create(body);
+      res.sendStatus(200);  
+    } catch (error) {
+      console.log(error);
+    }
   });
 }
