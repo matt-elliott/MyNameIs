@@ -14,7 +14,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 // Static directory
-app.use('assets/', express.static("public"));
+app.use(
+  '/assets/',
+  express.static(__dirname + '/public/')
+);
 
 apiRoutes(app, db);
 viewsRoutes(app, db);
