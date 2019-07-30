@@ -1,9 +1,6 @@
-require('dotenv').config();
 const express = require('express');
 const app = express();
 const port = process.env.PORT || 8080;
-// const Sequelizer = require('sequelizer');
-// const sequelize = new Sequelizer(process.env.HOST);
 const hbs = require('express-handlebars');
 const apiRoutes = require('./routes/api');
 const viewsRoutes = require('./routes/views');
