@@ -6,7 +6,7 @@ module.exports = function (app, db) {
     res.render('register');
   });
   app.post('/api/register',
-  async function ({body}, res) {
+    async function ({ body }, res) {
     try {
       let result = await db.Users.create(body);
       console.log('sent:\n', result.dataValues)

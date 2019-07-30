@@ -9,6 +9,7 @@ An event management app that helps your attendees get to know each other. A digi
 3. admin user adds emails of people to invite
 4. app sends invite links (links are to login page but with event id so new users are attached to event)
 5. admin user can now go back and check event page
+6. admin profile has my events : a list of previous events attended and created
 
 ###### invited user
 1. user follows signup url to sign up page with event id in url
