@@ -1,1 +1,28 @@
-<h2>Event Page</h2>
+<div class="column">
+  <div class="row">
+    <header class="col-12">
+      <h2>Event Page</h2>
+      <h3>{{events.name}}</h3>
+      <h4>Event ID: {{events.id}}</h3>
+        <h5>Time: {{events.date}}: {{events.start_time}} -
+          {{events.end_time}}</h3>
+          <p>{{events.description}}</p>
+    </header>
+    <div class="col-6">
+      <h3>Pending Attendance Requests</h3>
+      <ul>
+        {{#each pending_invites}}
+        <li>{{dataValues.email}}</li>
+        {{/each}}
+      </ul>
+    </div>
+    <div class="col-6">
+      <h3>Accepted Attendance Requests</h3>
+      <ul>
+        {{#each accepted_invites}}
+        <li>{{dataValues.email}}</li>
+        {{/each}}
+      </ul>
+    </div>
+  </div>
+</div>

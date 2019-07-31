@@ -19,9 +19,30 @@ module.exports = function (app, db) {
   });
   app.get('/event/:eventID',
   async function ({params: {eventID} }, res) {
-    let results = await db.Events.findByPk(eventID);
-    console.log(results);
-    res.render('event-page');
+    try {
+      let data = {};
+      data.events = await db.Events.findByPk(eventID);
+      data.pending_invites = await db.Invites.findAll(
+        {
+          where: {
+            status: 'pending'
+          }
+        }
+      );
+      data.accepted_invites = await db.Invites.findAll(
+        {
+          where: {
+            status: 'accepted'
+          }
+        }
+      );
+      
+      res.render('event-page', data);  
+    } catch (error) {
+      console.log(error);
+      res.sendStatus(500);
+    }
+    
   });
   app.get('/event/:eventID/attendees', function (rq, res) {
     res.render('attendees');
