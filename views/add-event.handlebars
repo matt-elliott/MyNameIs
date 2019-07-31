@@ -1,19 +1,65 @@
+<div class="row">
+  <div class="col-12">
+    <div class="jumbotron jumbotron mb-5 mt-2 p-3">
+      <div class="container">
+        <h1 class="display-4 text-dark text-center">Add an event</h1>
+      </div>
+    </div>
+  </div>
+</div>
+
+<br> <br>
+
 <form id="add-event">
-  <label for="name">Name:</label>
-  <input type="text" name="name" placeholder="Big Party">
-  <br>
-  <label for="description">Description:</label>
-  <input type="text" name="description" placeholder="A cool event for cool people. Cool!">
-  <br>
-  <label for="date">Date:</label>
-  <input type="date" name="date" placeholder="A cool event for cool people. Cool!">
-  <br>
-  <label for="start_time">Start Time:</label>
-  <input type="datetime" name="start_time" placeholder="A cool event for cool people. Cool!">
-  <br>
-  <label for="end_time">End Time:</label>
-  <input type="datetime" name="end_time" placeholder="A cool event for cool people. Cool!">
-  <br>
-  <button type="submit" class="btn btn-warning">Submit</button>
-  <button type="reset" class="btn btn-primary">Reset</button>
+
+  <div class="container">
+    <div class="form-group row">
+      <label for="name" class="col-sm-2 col-form-label">Name:</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" name="name" placeholder="Big Party">
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="form-group row">
+      <label for="description" class="col-sm-2 col-form-label">Description:</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" name="description" placeholder="A cool event for cool people. Cool!">
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="form-group row">
+      <label for="date" class="col-sm-2 col-form-label">Date:</label>
+      <div class="col-sm-10 l-10">
+        <input type="date" class="form-control" name="date" placeholder="A cool event for cool people. Cool!">
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="form-group row">
+      <label for="start_time" class="col-sm-2 col-form-label">Start Time:</label>
+      <div class="col-sm-10 l-10">
+        <input type="datetime" class="form-control" name="start_time" placeholder="A cool event for cool people. Cool!">
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="form-group row">
+      <label for="end_time" class="col-sm-2 col-form-label">End Time:</label>
+      <div class="col-sm-10">
+        <input type="datetime" class="form-control" name="end_time" placeholder="A cool event for cool people. Cool!">
+      </div>
+    </div>
+  </div>
+  <br> <br>
+  <div class="col-s text-center">
+    <button type="submit" class="btn btn-warning text-light">Submit</button>
+    <button type="reset" class="btn btn-primary">Reset</button>
+  </div>
+
 </form>
