@@ -25,6 +25,7 @@ module.exports = function (app, db) {
       data.pending_invites = await db.Invites.findAll(
         {
           where: {
+            eventID: eventID,
             status: 'pending'
           }
         }
@@ -32,6 +33,7 @@ module.exports = function (app, db) {
       data.accepted_invites = await db.Invites.findAll(
         {
           where: {
+            eventID: eventID,
             status: 'accepted'
           }
         }
