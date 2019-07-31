@@ -43,8 +43,9 @@ module.exports = function (app, db) {
 
     try {
       let results = await db.Invites.bulkCreate(data);  
-      console.log(results);
-      res.sendStatus(200);
+      let eventID = results[0].eventID;
+
+      res.send({redirect: `/event/${eventID}`});
     } catch (error) {
       console.log(error);
       res.sendStatus(500);
