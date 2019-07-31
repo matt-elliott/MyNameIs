@@ -11,6 +11,7 @@ const Users = require('./users')(sequelize, Sequelize);
 const Invites = require('./invite')(sequelize, Sequelize);
 
 const db = {
+  Sequelize,
   sequelize,
   Events,
   Users,
