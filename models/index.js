@@ -8,11 +8,13 @@ const sequelize = new Sequelize(
 
 const Events = require('./events')(sequelize, Sequelize);
 const Users = require('./users')(sequelize, Sequelize);
+const Invites = require('./invite')(sequelize, Sequelize);
 
 const db = {
   sequelize,
   Events,
-  Users
+  Users,
+  Invites
 }
 
 module.exports = db;

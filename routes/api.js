@@ -17,8 +17,7 @@ module.exports = function (app, db) {
   app.get('/api/events', function (req, res) {
     //returns all evnets
   });
-  app.post('/api/register',
-    async function ({ body }, res) {
+  app.post('/api/register', async function ({ body }, res) {
     try {
       let result = await db.Users.create(body);
       res.sendStatus(200);  
@@ -26,5 +25,30 @@ module.exports = function (app, db) {
       console.log(error);
       res.sendStatus(500); 
     }
+  });
+
+  app.post('/api/addInvite/:eventID', async function ({ body, params }, res) {
+    let data = [];
+    
+    body.data.forEach(function (item) {
+      let datum = {
+        eventID: params.eventID,
+        email: item,
+      };
+
+      data.push(datum);
+    });
+
+    try {
+      let results = await db.Invites.bulkCreate(data);  
+      console.log(results);
+      res.sendStatus(200);
+    } catch (error) {
+      console.log(error);
+      res.sendStatus(500);
+    }
+    
+    //TODO have node listen to updates in invite list and send invites to new people?
+    //TODO 
   });
 }

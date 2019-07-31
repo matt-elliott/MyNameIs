@@ -8,7 +8,7 @@ module.exports = function (app, db) {
   app.get('/admin/addevent', async function (req, res) {
     res.render('add-event')
   });
-  app.get('/invite', function (req, res) {
+  app.get('/admin/invite/:eventID', function (req, res) {
     res.render('invite');
   });
   app.get('/admin/', function (req, res) {
