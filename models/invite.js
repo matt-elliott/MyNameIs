@@ -17,7 +17,7 @@ module.exports = function (sq, DataType) {
     status: {
       type: DataType.STRING,
       allowNull: false,
-      defaultValue: 'sent'
+      defaultValue: 'sending'
     },
   });
 

@@ -1,4 +1,7 @@
+const Emitter = require('../helpers/emitter');
+
 module.exports = function (app, db) {
+
   app.post('/api/addUser', function (req, res) {
     //use sequelize to send data to be added to user table in db
   });
@@ -8,6 +11,7 @@ module.exports = function (app, db) {
   app.post('/api/addEvent', async function ({body}, res) {
     try {
       let result = await db.Events.create(body);
+
       res.send({
         redirect: `/admin/invite/${result.dataValues.id}`
       });
@@ -45,7 +49,8 @@ module.exports = function (app, db) {
       let results = await db.Invites.bulkCreate(data);  
       let eventID = results[0].eventID;
 
-      res.send({redirect: `/event/${eventID}`});
+      Emitter.emit('invites-table-updated');
+      // res.send({redirect: `/event/${eventID}`});
     } catch (error) {
       console.log(error);
       res.sendStatus(500);

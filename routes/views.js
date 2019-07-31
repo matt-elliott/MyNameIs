@@ -1,5 +1,6 @@
 module.exports = function (app, db) {
   const Op = db.Sequelize.Op;
+
   app.get('/', function (req, res) {
     res.render('index');
   });
