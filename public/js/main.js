@@ -31,7 +31,10 @@
     }
     
     $.post(queryURL, data, function (res) {
-      console.log('posted ? ', res);
-    });
+      console.log('posted : ', res);
+      if(res.redirect) {
+        window.location = res.redirect;
+      }
+    },);
   });
 })();
