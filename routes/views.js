@@ -17,7 +17,10 @@ module.exports = function (app, db) {
   app.get('/admin/addusers', function (req, res) {
     res.render('add-users');
   });
-  app.get('/event/:eventID', function (req, res) {
+  app.get('/event/:eventID',
+  async function ({params: {eventID} }, res) {
+    let results = await db.Events.findByPk(eventID);
+    console.log(results);
     res.render('event-page');
   });
   app.get('/event/:eventID/attendees', function (rq, res) {

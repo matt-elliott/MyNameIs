@@ -26,7 +26,7 @@ apiRoutes(app, db);
 viewsRoutes(app, db);
 
 //{force: true}
-db.sequelize.sync({force: true}).then(function () {
+db.sequelize.sync().then(function () {
   app.listen(port, function () {
     console.log('App Live On Port: ', port);
   });

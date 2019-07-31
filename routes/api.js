@@ -22,7 +22,7 @@ module.exports = function (app, db) {
   app.post('/api/register', async function ({ body }, res) {
     try {
       let result = await db.Users.create(body);
-      res.sendStatus(200);  
+      res.send({redirect: '/admin/addevent'});
     } catch (error) {
       console.log(error);
       res.sendStatus(500); 
