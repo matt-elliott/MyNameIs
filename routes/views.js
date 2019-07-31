@@ -20,6 +20,7 @@ module.exports = function (app, db) {
   app.get('/event/:eventID',
   async function ({params: {eventID} }, res) {
     try {
+      //TODO USE JOIN TABLES TO GET A MORE COMPLETE DATA SET
       let data = {};
       data.events = await db.Events.findByPk(eventID);
       data.pending_invites = await db.Invites.findAll(
