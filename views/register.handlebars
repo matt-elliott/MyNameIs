@@ -1,27 +1,49 @@
 <h2>Registration Page</h2>
-
-<form id="registration-form">
-  <label for="first_name">First Name:</label>
-  <input name="first_name" placeholder="Jason" type="text">
-  <br>
-  <label for="last_name">Last Name:</label>
-  <input name="last_name" placeholder="Voorhes" type="text">
-  <br>
-  <label for="last_name">Email:</label>
-  <input name="email" placeholder="jHoorves@gmail.com" type="text">
-  <br>
-  <label for="username">Display Name:</label>
-  <input name="username" placeholder="jHoorves@gmail.com" type="text">
-  <br>
-  <label for="password">Password:</label>
-  <input name="password" placeholder="********" type="password">
-  <br>
-  <label for="profile_image">URL to Profile Picture</label>
-  <input name="profile_image" placeholder="https://i.imgur.com/wvsuPQW.gif" type="text">
-  <br>
-  <input type="hidden" name="eventID" value="{{eventID}}">
-  <br>
-  <input type="submit" value="Create Event" class="btn btn-primary">
-  <button type="button" class="btn btn-primary">Find  Existing Event</button>
-  
-</form>
+<div class="row">
+  <form id="registration-form" class="col-4">
+    <label for="first_name">First Name:</label>
+    <input name="first_name" placeholder="Jason" type="text">
+    <br>
+    <label for="last_name">Last Name:</label>
+    <input name="last_name" placeholder="Voorhes" type="text">
+    <br>
+    <label for="last_name">Email:</label>
+    <input name="email" placeholder="jHoorves@gmail.com" type="text">
+    <br>
+    <label for="username">Display Name:</label>
+    <input name="username" placeholder="jHoorves@gmail.com" type="text">
+    <br>
+    <label for="password">Password:</label>
+    <input name="password" placeholder="********" type="password">
+    <br>
+    <label for="profile_image">URL to Profile Picture</label>
+    <input name="profile_image" placeholder="https://i.imgur.com/wvsuPQW.gif" type="text">
+    <br>
+    <input type="hidden" name="eventID" value="{{eventID}}">
+    <br>
+    <input type="submit" value="Create Event" class="btn btn-primary">
+    <button type="button" class="btn btn-primary">Find  Existing Event</button>
+  </form>
+  <div class="col-8">
+    {{#if data.events}}
+      <h2>{{data.events.name}}</h2>
+      <h4>
+        <span>{{data.events.date}} : </span>
+        <span>{{data.events.start_time}}</span> —
+        <span>{{data.events.end_time}}</span>
+      </h4>
+    {{/if}}
+    <hr>
+    
+    {{#if data.attendees}}
+      <ul>
+        {{#each data.attendees}}
+          <li>
+            <h5>{{email}}</h5>
+            <h6>{{status}}</h6>
+          </li>
+        {{/each}}
+      </ul>
+    {{/if}}
+  </div>
+</div>

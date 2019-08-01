@@ -1,15 +1,36 @@
+const chalk = require('chalk');
 module.exports = function (app, db) {
   const Op = db.Sequelize.Op;
 
   app.get('/', function (req, res) {
     res.render('index');
   });
-  app.get('/register/:eventID?', function ({ params: {eventID} }, res) {
-    if(eventID === undefined) eventID = 0;
+  app.get('/register/:eventID?', async function ({ params: {eventID} }, res) {
+    if (eventID === undefined) eventID = 0;
+
+    if (eventID > 0) {
+      try {
+        let data = await {};
+        let eventsData = await db.Events.findByPk(eventID);
+        let attendeesData = await db.Invites.findAll({
+          where: {
+            eventID: eventID,
+            status: 'pending'
+          }
+        });
+
+        data.events = eventsData.dataValues;
+        data.attendees = attendeesData;
+
+        res.render('register', {data});
+      } catch (error) {
+        console.log(chalk.bgRed.white.bold(error));
+      }
+      
+    } else {
+      res.render('register');
+    }
     
-    res.render('register', {
-      eventID: eventID
-    });
   });
   app.get('/admin/addevent', async function (req, res) {
     res.render('add-event')
