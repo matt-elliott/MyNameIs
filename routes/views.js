@@ -5,7 +5,7 @@ module.exports = function (app, db) {
   app.get('/', function (req, res) {
     res.render('index');
   });
-  app.get('/register/:eventID?', async function ({ params: {eventID} }, res) {
+  app.get('/register/:eventID?/:emailaddress?', async function ({ params: {eventID, emailaddress} }, res) {
     if (eventID === undefined) eventID = 0;
 
     if (eventID > 0) {
@@ -21,6 +21,9 @@ module.exports = function (app, db) {
 
         data.events = eventsData.dataValues;
         data.attendees = attendeesData;
+        if( emailaddress !== undefined) {
+          data.emailAddress = emailaddress;
+        }
 
         res.render('register', {data});
       } catch (error) {

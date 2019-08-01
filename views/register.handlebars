@@ -7,9 +7,14 @@
     <label for="last_name">Last Name:</label>
     <input name="last_name" placeholder="Voorhes" type="text">
     <br>
-    <label for="last_name">Email:</label>
-    <input name="email" placeholder="jHoorves@gmail.com" type="text">
-    <br>
+    {{#if data.emailAddress}}
+      <label for="email">Email:</label>
+      <input name="email" value="{{data.emailAddress}}" type="text" disabled="disabled">
+      {{else}}
+      <label for="email">Email:</label>
+      <input name="email" placeholder="jHoorves@gmail.com" type="text">
+    {{/if}}
+    
     <label for="username">Display Name:</label>
     <input name="username" placeholder="jHoorves@gmail.com" type="text">
     <br>
