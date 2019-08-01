@@ -50,7 +50,7 @@ module.exports = function (app, db) {
       let eventID = results[0].eventID;
 
       Emitter.emit('invites-table-updated');
-      // res.send({redirect: `/event/${eventID}`});
+      res.send({redirect: `/event/${eventID}`});
     } catch (error) {
       console.log(error);
       res.sendStatus(500);
