@@ -1,14 +1,49 @@
-<div class="column">
+<div class="row">
+  <div class="col-12">
+    <div class="jumbotron jumbotron mb-5 mt-2 p-3">
+      <div class="container">
+        <h1 class="display-4 text-dark text-center"><strong>Event Details</strong></h1>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="container">
+
   <div class="row">
-    <header class="col-12">
-      <h2>Event Page</h2>
-      <h3>{{events.name}}</h3>
-      <h4>Event ID: {{events.id}}</h3>
-        <h5>Time: {{events.date}}: {{events.start_time}} -
-          {{events.end_time}}</h3>
-          <p>{{events.description}}</p>
-    </header>
-    <div class="col-6">
+    <div class="col-12">
+      <h3>Event: {{events.name}}</h3>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <h4 for="event_id">Event ID: {{events.id}}<h4>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <h4>Date and Time: {{events.date}}: {{events.start_time}} - </h4>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <h4>Event end time: {{events.end_time}} - </h4>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <h4>Event description: {{events.description}}</h4>
+    </div>
+  </div>
+
+<br> <br> <br>
+
+  <div class="row">
+    <div class="col-5">
       <h3>Pending Attendance Requests</h3>
       <ul>
         {{#each pending_invites}}
@@ -16,7 +51,9 @@
         {{/each}}
       </ul>
     </div>
-    <div class="col-6">
+
+    <div class="col-2"></div>
+    <div class="col-5">
       <h3>Accepted Attendance Requests</h3>
       <ul>
         {{#each accepted_invites}}
@@ -24,5 +61,7 @@
         {{/each}}
       </ul>
     </div>
+
   </div>
+
 </div>

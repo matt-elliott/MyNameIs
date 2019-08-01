@@ -1,9 +1,25 @@
-<h2>Invite Page</h2>
+<div class="row">
+  <div class="col-12">
+    <div class="jumbotron jumbotron mb-5 mt-2 p-3">
+      <div class="container">
+        <h1 class="display-4 text-dark text-center"><strong>Invite Page</strong></h1>
+      </div>
+    </div>
+  </div>
+</div>
+
 <form id="invite">
-  <label for="invite">Enter email addresses seperated by coma's (,) to invite your team to your event.</label>
-  <textarea name="invite" cols="50" rows="10"></textarea>
-  <br><br>
-  <button type="submit" class="btn btn-warning">Submit</button>
-  <button type="reset" class="btn btn-primary">Reset</button>
-</form>
+
+  <div class="container">
+    <div class="form-group">
+      <h3 for="invite">Enter email addresses seperated by coma's (,) to invite your team to your event.</h3>
+      <textarea class="form-control" name="invite" rows="5"></textarea>
+    </div>
+
+    <div class="text-center">
+      <button type="submit" class="btn btn-warning"><i class="fa fa-check"></i> Submit</button>
+      <button type="reset" class="btn btn-primary"><i class="fa fa-repeat"></i> Reset</button>
+    </div>
+  </div>
+
 </form>
