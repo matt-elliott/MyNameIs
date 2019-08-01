@@ -4,9 +4,12 @@ module.exports = function (app, db) {
   app.get('/', function (req, res) {
     res.render('index');
   });
-  app.get('/register/:eventID?', function ({ params }, res) {
-    console.log(params);
-    res.render('register');
+  app.get('/register/:eventID?', function ({ params: {eventID} }, res) {
+    if(eventID === undefined) eventID = 0;
+    
+    res.render('register', {
+      eventID: eventID
+    });
   });
   app.get('/admin/addevent', async function (req, res) {
     res.render('add-event')

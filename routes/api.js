@@ -23,10 +23,15 @@ module.exports = function (app, db) {
   app.get('/api/events', function (req, res) {
     //returns all evnets
   });
-  app.post('/api/register', async function ({ body }, res) {
+  app.post('/api/register/', async function ({ body }, res) {
     try {
       let result = await db.Users.create(body);
-      res.send({redirect: '/admin/addevent'});
+      if( result.eventID === 0) {
+        res.send({redirect: '/admin/addevent'});
+      } else {
+        res.send({redirect: `/event/${result.eventID}`});
+      }
+      
     } catch (error) {
       console.log(error);
       res.sendStatus(500); 

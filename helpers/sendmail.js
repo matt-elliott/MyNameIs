@@ -4,7 +4,7 @@ const Op = db.Sequelize.Op;
 
 async function sendMail() {
   console.log('sending email');
-  let [emails, ids, inviteURL] = await getNewInvites();
+  let [emails, ids, eventID] = await getNewInvites();
 
   let transporter;
   try {
@@ -25,7 +25,7 @@ async function sendMail() {
     to: emails.join(', '),
     subject: 'You Are Invited to Attend A Private Event Through My Name Is',
     test: 'Hello World!',
-    html: `You are invited to attend an event and use the My Name Is app to keep track of people's names.<br/><br/>Follow the invite link to accept the invite!<br/><br/><a href="${inviteURL}">Accpet Invite</a>`
+    html: `You are invited to attend an event and use the My Name Is app to keep track of people's names.<br/><br/>Follow the invite link to accept the invite!<br/><br/><a href="${process.env.ENV_URL}/api/register/${eventID}">Accpet Invite</a>`
   };
 
   transporter.sendMail(mailOptions, function (error, info) {
@@ -48,14 +48,14 @@ async function getNewInvites() {
       status: 'sending'
     }
   });
-  let inviteURL = res[0].eventID;
+  let eventID = res[0].eventID;
 
   res.forEach(function (item) {
     emails.push(item.email.trim());
     ids.push(item.id);
   });
 
-  return [emails, ids, inviteURL];
+  return [emails, ids, eventID];
 }
 
 async function updateNewInvitesStatus(ids) {  
