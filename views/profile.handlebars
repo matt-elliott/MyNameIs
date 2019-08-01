@@ -1,1 +1,26 @@
 <h2>Profile Page</h2>
+<hr>
+<h3>
+  {{user.first_name}}
+  {{user.last_name}}
+</h3>
+<figure style="float:left">
+  <img src="{{user.profile_img}}" alt="A Picture of {{user.first_name}}">
+</figure>
+<p><span class="strong">email:</span> {{user.email}}</p>
+<p><span class="strong">username:</span> {{user.username}}</p>
+<p><span class="strong">Joined:</span> {{user.createdAt}}</p>
+<hr>
+<h2>Events:</h2>
+<ul>
+  {{#each event}}
+  <li>
+    <p>
+      Event Name: {{name}}
+      <br>
+      Event Link: <a href="http://localhost:8080/event/{{id}}">{{name}}</a>
+    </p>
+  </li>
+  {{/each}}
+</ul>
+

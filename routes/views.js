@@ -83,7 +83,22 @@ module.exports = function (app, db) {
   app.get('/event/:eventID/attendees', function (rq, res) {
     res.render('attendees');
   });
-  app.get('/user/:userID/', function (req, res) {
-    res.render('profile');
+  app.get('/user/:userID/', async function ({params: {userID}}, res) {
+    let [{dataValues}] = await db.Users.findAll({
+      where: {
+        id: userID
+      }
+    });
+    console.log(dataValues.eventID);
+    let results = await db.Events.findAll({
+      where: {
+        id: dataValues.eventID
+      }
+    });
+    console.log(results);
+    res.render('profile', {
+        user: dataValues,
+        event: results
+    });
   })
 }
