@@ -1,4 +1,6 @@
 const Emitter = require('../helpers/emitter');
+// const checkInviteeEmail = require('../helpers/checkemail');
+const chalk = require('chalk');
 
 module.exports = function (app, db) {
 
@@ -25,11 +27,37 @@ module.exports = function (app, db) {
   });
   app.post('/api/register/', async function ({ body }, res) {
     try {
-      let result = await db.Users.create(body);
+      let invites = await db.Invites.findAll({
+      });
+      
+      let invitesLength = invites.length;
+      let i = 0;
+      let matchedID = function () {
+        for (i; i < invitesLength; i++) {
+          if (invites[i].email === body.email) {
+            let id = invites[i].id;
+            return id;
+          };
+          //breaking after first match in case of dues
+          //todo hand dupes better ^^^
+        }
+      };
 
-      if( parseInt(result.eventID) === 0) {
+      let updated = await db.Invites.update({
+        status: 'accepted',
+      }, {
+        where: {
+          id: matchedID()
+        }
+      });
+
+      let result = await db.Users.create(body);
+      if (parseInt(result.eventID) === 0) {
+        //user is admin and will create event
         res.send({redirect: '/admin/addevent'});
       } else {
+        //user is invitee and will go directly to event page
+        //but first check if email address is valid
         res.send({redirect: `/event/${result.eventID}`});
       }
       

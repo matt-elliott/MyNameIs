@@ -19,6 +19,7 @@ module.exports = function (app, db) {
           }
         });
 
+        data.eventID = eventID;
         data.events = eventsData.dataValues;
         data.attendees = attendeesData;
         if( emailaddress !== undefined) {
@@ -71,7 +72,7 @@ module.exports = function (app, db) {
           }
         }
       );
-      
+      console.log(data.accepted_invites, eventID);
       res.render('event-page', data);  
     } catch (error) {
       console.log(error);

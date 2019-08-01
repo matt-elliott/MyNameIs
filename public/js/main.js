@@ -9,6 +9,9 @@
       console.log(data);  
     } else {
       data = $(this)[0][0].value.split(',');
+      data.forEach(function (item) {
+        item = item.trim();
+      });
       data = {data};
       console.log(data);
     }
