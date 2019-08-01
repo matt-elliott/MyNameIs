@@ -25,7 +25,7 @@ async function sendMail() {
     to: emails.join(', '),
     subject: 'You Are Invited to Attend A Private Event Through My Name Is',
     test: 'Hello World!',
-    html: `You are invited to attend an event and use the My Name Is app to keep track of people's names.<br/><br/>Follow the invite link to accept the invite!<br/><br/><a href="${process.env.ENV_URL}/api/register/${eventID}">Accpet Invite</a>`
+    html: `You are invited to attend an event and use the My Name Is app to keep track of people's names.<br/><br/>Follow the invite link to accept the invite!<br/><br/><a href="${process.env.ENV_URL}/register/${eventID}">Accpet Invite</a>`
   };
 
   transporter.sendMail(mailOptions, function (error, info) {

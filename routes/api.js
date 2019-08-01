@@ -26,7 +26,8 @@ module.exports = function (app, db) {
   app.post('/api/register/', async function ({ body }, res) {
     try {
       let result = await db.Users.create(body);
-      if( result.eventID === 0) {
+
+      if( parseInt(result.eventID) === 0) {
         res.send({redirect: '/admin/addevent'});
       } else {
         res.send({redirect: `/event/${result.eventID}`});
