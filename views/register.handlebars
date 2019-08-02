@@ -1,11 +1,5 @@
-<div class="row">
-  <div class="col-12">
-    <div class="jumbotron jumbotron mb-5 mt-2 p-3">
-      <div class="container">
-        <h1 class="display-4 text-dark text-center"><strong>Registration Page</strong></h1>
-      </div>
-    </div>
-  </div>
+<div class="jumbotron jumbotron mb-5 mt-2 p-3">
+  <h1 class="display-4 text-dark text-center"><strong>Registration Page</strong></h1>
 </div>
 
 <form id="add-event">
@@ -63,32 +57,32 @@
       </div>
     </div>
   </div>
-     <input type="hidden" name="eventID" value="{{data.eventID}}">
+  <input type="hidden" name="eventID" value="{{data.eventID}}">
   <div class="text-center">
     <input type="submit" value="Create Event" class="btn btn-primary">
     <button type="button" class="btn btn-primary">Find Existing Event</button>
   </div>
 </form>
 <div class="col-8">
-    {{#if data.events}}
-      <h2>{{data.events.name}}</h2>
-      <h4>
-        <span>{{data.events.date}} : </span>
-        <span>{{data.events.start_time}}</span> —
-        <span>{{data.events.end_time}}</span>
-      </h4>
-    {{/if}}
-    <hr>
-    
-    {{#if data.attendees}}
-      <ul>
-        {{#each data.attendees}}
-          <li>
-            <h5>{{email}}</h5>
-            <h6>{{status}}</h6>
-          </li>
-        {{/each}}
-      </ul>
-    {{/if}}
-  </div>
+  {{#if data.events}}
+  <h2>{{data.events.name}}</h2>
+  <h4>
+    <span>{{data.events.date}} : </span>
+    <span>{{data.events.start_time}}</span> —
+    <span>{{data.events.end_time}}</span>
+  </h4>
+  {{/if}}
+  <hr>
+
+  {{#if data.attendees}}
+  <ul>
+    {{#each data.attendees}}
+    <li>
+      <h5>{{email}}</h5>
+      <h6>{{status}}</h6>
+    </li>
+    {{/each}}
+  </ul>
+  {{/if}}
+</div>
 </div>
