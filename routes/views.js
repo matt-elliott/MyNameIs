@@ -59,7 +59,7 @@ module.exports = function (app, db) {
           where: {
             eventID: eventID,
             status: {
-             [Op.or]:  ['pending', 'sent']
+             [Op.not]:  ['accepted']
             }
           }
         }

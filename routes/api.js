@@ -26,52 +26,64 @@ module.exports = function (app, db) {
     //returns all evnets
   });
   app.post('/api/register/', async function ({ body }, res) {
-    console.log('LETS REG THAT')
-    try {
       //todo make an else statement to handle whan eventID is greater than 0
       // if (parseInt(body.eventID) > 0)
       if (body.eventID || parseInt(body.eventID) >= 1) {
-        let invites = await db.Invites.findAll({
-          where: {
-            eventID: body.eventID
-          }
-        });
+        console.log(chalk.bgBlue.white.bold('Invited User Sign Up'));
+        
+        try {
+          let invites = await db.Invites.findAll({
+            where: {
+              eventID: body.eventID
+            }
+          });
 
-        let invitesLength = invites.length;
-        let i = 0;
+          let invitesLength = invites.length;
+          let i = 0;
 
-        for (i; i < invitesLength; i++) {
-          if (invites[i].email === body.email) {
-            let id = invites[i].id;
-
-            let updated = await db.Invites.update({
-              status: 'accepted',
-            }, {
-                where: {
-                  id: id
+          for (i; i < invitesLength; i++) {
+            if (invites[i].email === body.email) {
+              let id = invites[i].id;
+              let updated = await db.Invites.update({
+                status: 'accepted',
+              }, {
+                  where: {
+                    id: id
+                  }
                 }
-              });
+              );
+              console.log(updated);
+              
+              let result = await db.Users.create(body);
+              console.log(result);
+              
+              //user is admin and will create event
+              res.send({ redirect: `/event/${result.eventID}` });
 
-            let result = await db.Users.create(body);
-            //user is admin and will create event
-            res.send({ redirect: `/event/${result.eventID}` });
-
-            break;
-          } else {
-            console.log(chalk.bgRed.white('You`re not invited!'));
-            break;
-          };
-          //breaking after first match in case of dues
-          //todo hand dupes better ^^^
+              break;
+            } else {
+              console.log(chalk.bgRed.white('You`re not invited!'));
+              break;
+            };
+            //breaking after first match in case of dues
+            //todo hand dupes better ^^^
+          }
+        } catch (error) {
+          console.log('\n', error);
         }
       } else {
-        res.send({ redirect: '/admin/addevent' });
-      }
+        console.log(chalk.bgBlue.white.bold('Admin User Created. Going to Add Event.'));
+        if (body.eventID === '') body.eventID = 0;
       
-    } catch (error) {
-      console.log('fuckin error',error);
-      res.sendStatus(500);
-    }
+        try {
+          let result = await db.Users.create(body);
+          console.log(result);
+          res.send({ redirect: '/admin/addevent' });
+          
+        } catch (error) {
+          console.log(chalk.bgRed.white(error));
+        }
+      }
   });
 
   app.post('/api/addInvite/:eventID', async function ({ body, params }, res) {
