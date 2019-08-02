@@ -17,12 +17,37 @@ width: 100%
   #cards {
       display: flex;
       flex-direction: column;
-      padding: 28px;   
+      padding: 28px;  
+ 
     }
 
     #jumboText{
       font-size: 30px;
       margin-top: 20%;
+      background: rgb(189, 211, 209)
+      /**/
     }
 }
 
+/*======================================= */
+
+#eventInfo {
+  margin-top: 30px;
+  background: rgb(189, 211, 209)
+  /* background:linear-gradient(rgb(178, 191, 246), rgb(146, 248, 222)); */
+
+}
+
+h1, h2, h3, h4, p, span{
+  font-family: 'Righteous', cursive;
+}
+
+  h1 {
+    text-shadow: 3px 3px rgba(3, 40, 250, 0.349);
+  }
+
+  .card{
+    background: rgb(189, 211, 209);
+  }
+
+  
