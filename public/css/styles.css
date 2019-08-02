@@ -1,28 +1,77 @@
 body {
-  background-color:#333;
-  color: #efefef;
+  /* background-color:#333; */
+  color: hsl(0, 0%, 94%);
+  background: linear-gradient( rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+  url(../images/water-1330252_1920.jpg);
+
 }
 html {
-  touch-action: none; 
+  background: linear-gradient( rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+  url(../images/water-1330252_1920.jpg);
+  touch-action: none;
+
 }
+
+
 #hr1{
-  border-color: cyan
+  border-color: cyan;
 }
 
 .jumbotron{
-width: 100%
+width: 100%;
+background:rgb(191, 218, 253), 
+
 }
+
+.card{
+  box-sizing: border-box;
+  border: 1px solid rgb(17, 16, 16);
+}
+
+.card:hover{
+  box-shadow: 0 10px 18px 0 rgba(0, 0, 0, 0.24),0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.btn:hover{
+  box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+  }
+
+
 /* Small devices (portrait tablets and large phones, 600px and up) */
 @media only screen and (max-width: 600px) {
   #cards {
       display: flex;
       flex-direction: column;
-      padding: 28px;   
+      padding: 28px;  
+ 
     }
 
     #jumboText{
       font-size: 30px;
       margin-top: 20%;
+      background: rgb(189, 211, 209)
+      /**/
     }
 }
 
+/*======================================= */
+
+#eventInfo {
+  margin-top: 30px;
+  background: rgb(189, 211, 209)
+  /* background:linear-gradient(rgb(178, 191, 246), rgb(146, 248, 222)); */
+
+}
+
+h1, h2, h3, h4, p, span{
+  font-family: 'Righteous', cursive;
+}
+
+  h1 {
+    text-shadow: 3px 3px rgba(3, 40, 250, 0.349);
+  }
+
+  .card{
+    background: rgb(189, 211, 209);
+  }
+
+  
