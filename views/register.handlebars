@@ -2,7 +2,7 @@
   <h1 class="display-4 text-dark text-center"><strong>Registration Page</strong></h1>
 </div>
 
-<form id="add-event">
+<form id="registration-form">
 
   <div class="container">
     <div class="form-group row">
@@ -11,58 +11,51 @@
         <input type="text" class="form-control" name="first_name" placeholder="Jason">
       </div>
     </div>
-  </div>
 
-  <div class="container">
     <div class="form-group row">
       <label for="last_name" class="col-sm-2 col-form-label"> Last Name:</label>
       <div class="col-sm-10">
         <input type="text" class="form-control" name="last_name" placeholder="Voohers">
       </div>
     </div>
-  </div>
 
-  <div class="container">
     <div class="form-group row">
-      <label for="email" class="col-sm-2 col-form-label"> Last Name:</label>
+      <label for="email" class="col-sm-2 col-form-label">Email:</label>
       <div class="col-sm-10">
         <input type="text" class="form-control" name="email" placeholder="jHoorves@gmail.com">
       </div>
     </div>
-  </div>
 
-  <div class="container">
+
     <div class="form-group row">
-      <label for="username" class="col-sm-2 col-form-label"> Display Name:</label>
+      <label for="username" class="col-sm-2 col-form-label">Display Name:</label>
       <div class="col-sm-10">
         <input type="text" class="form-control" name="username" placeholder="jHoorves@gmail.com">
       </div>
     </div>
-  </div>
 
-  <div class="container">
     <div class="form-group row">
       <label for="password" class="col-sm-2 col-form-label">Password:</label>
       <div class="col-sm-10">
         <input type="password" class="form-control" name="password" placeholder="******">
       </div>
     </div>
-  </div>
 
-  <div class="container">
     <div class="form-group row">
       <label for="profile_image" class="col-sm-2 col-form-label">URL to Profile Picture:</label>
       <div class="col-sm-10">
         <input type="text" class="form-control" name="profile_image" placeholder="https://i.imgur.com/wvsuPQW.gif">
+
       </div>
     </div>
-  </div>
-  <input type="hidden" name="eventID" value="{{data.eventID}}">
-  <div class="text-center">
-    <input type="submit" value="Create Event" class="btn btn-primary">
-    <button type="button" class="btn btn-primary">Find Existing Event</button>
+    <input type="hidden" name="eventID" value="{{data.eventID}}">
+    <div class="text-center">
+      <input type="submit" value="Create Event" class="btn btn-primary">
+      <button type="button" class="btn btn-primary">Find Existing Event</button>
+    </div>
   </div>
 </form>
+
 <div class="col-8">
   {{#if data.events}}
   <h2>{{data.events.name}}</h2>
@@ -84,5 +77,4 @@
     {{/each}}
   </ul>
   {{/if}}
-</div>
 </div>

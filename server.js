@@ -30,5 +30,6 @@ viewsRoutes(app, db);
 db.sequelize.sync().then(function () {
   app.listen(port, function () {
     console.log('App Live On Port: ', port);
+    console.log(chalk.bgGreen.white.bold('\n\nVVVVVVVVV\n\n'));
   });
 });

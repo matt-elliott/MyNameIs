@@ -10,7 +10,7 @@ module.exports = function (app, db) {
   app.get('/api/users', function (req, res) {
     //return all users for event
   });
-  app.post('/api/addEvent', async function ({body}, res) {
+  app.post('/api/addEvent', async function ({ body }, res) {
     try {
       let result = await db.Events.create(body);
 
@@ -18,7 +18,7 @@ module.exports = function (app, db) {
         redirect: `/admin/invite/${result.dataValues.id}`
       });
     } catch (error) {
-      console.log(error);
+      console.log(cholk.bgRed.white.bold(error));
       res.sendStatus(500);
     }
   });
@@ -26,50 +26,64 @@ module.exports = function (app, db) {
     //returns all evnets
   });
   app.post('/api/register/', async function ({ body }, res) {
-    try {
-      let invites = await db.Invites.findAll({
-      });
-      
-      let invitesLength = invites.length;
-      let i = 0;
-      let matchedID = function () {
-        for (i; i < invitesLength; i++) {
-          if (invites[i].email === body.email) {
-            let id = invites[i].id;
-            return id;
-          };
-          //breaking after first match in case of dues
-          //todo hand dupes better ^^^
-        }
-      };
+      //todo make an else statement to handle whan eventID is greater than 0
+      // if (parseInt(body.eventID) > 0)
+      if (body.eventID || parseInt(body.eventID) >= 1) {
+        console.log(chalk.bgBlue.white.bold('Invited User Sign Up'));
+        
+        try {
+          let invites = await db.Invites.findAll({
+            where: {
+              eventID: body.eventID
+            }
+          });
 
-      let updated = await db.Invites.update({
-        status: 'accepted',
-      }, {
-        where: {
-          id: matchedID()
-        }
-      });
+          let invitesLength = invites.length;
+          let i = 0;
 
-      let result = await db.Users.create(body);
-      if (parseInt(result.eventID) === 0) {
-        //user is admin and will create event
-        res.send({redirect: '/admin/addevent'});
+          for (i; i < invitesLength; i++) {
+
+            if (invites[i].email === body.email) {
+              let id = invites[i].id;
+              let updated = await db.Invites.update({
+                status: 'accepted',
+              }, {
+                  where: {
+                    id: id
+                  }
+                }
+              );
+              
+              let result = await db.Users.create(body);
+              console.log(chalk.bgGreen.white.bold('Invited User Sign Up Completed'));
+              //user is admin and will create event
+              res.send({ redirect: `/event/${result.eventID}` });
+            } else {
+              console.log(chalk.bgRed.white('You`re not invited!'));
+            };
+            //todo hand dupes better ^^^
+          }
+        } catch (error) {
+          console.log(chalk.bgRed.white.bold('\n', error, '\n'));
+        }
       } else {
-        //user is invitee and will go directly to event page
-        //but first check if email address is valid
-        res.send({redirect: `/event/${result.eventID}`});
-      }
+        console.log(chalk.bgBlue.white.bold('Creating Admin User.'));
+        if (body.eventID === '') body.eventID = 0;
       
-    } catch (error) {
-      console.log(error);
-      res.sendStatus(500); 
-    }
+        try {
+          let result = await db.Users.create(body);
+          console.log(chalk.bgGreen.white.bold('Admin User Created.')); 
+          res.send({ redirect: '/admin/addevent' });
+          
+        } catch (error) {
+          console.log(chalk.bgRed.white(error));
+        }
+      }
   });
 
   app.post('/api/addInvite/:eventID', async function ({ body, params }, res) {
     let data = [];
-    
+
     body.data.forEach(function (item) {
       let datum = {
         eventID: params.eventID,
@@ -80,16 +94,16 @@ module.exports = function (app, db) {
     });
 
     try {
-      let results = await db.Invites.bulkCreate(data);  
+      let results = await db.Invites.bulkCreate(data);
       let eventID = results[0].eventID;
 
       Emitter.emit('invites-table-updated');
-      res.send({redirect: `/event/${eventID}`});
+      res.send({ redirect: `/event/${eventID}` });
     } catch (error) {
-      console.log(error);
+      console.log(chalk.bgRed.white.bold(error));
       res.sendStatus(500);
     }
-    
+
     //TODO have node listen to updates in invite list and send invites to new people?
     //TODO 
   });
