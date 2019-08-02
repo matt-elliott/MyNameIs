@@ -26,9 +26,11 @@ module.exports = function (app, db) {
     //returns all evnets
   });
   app.post('/api/register/', async function ({ body }, res) {
+    console.log('LETS REG THAT')
     try {
       //todo make an else statement to handle whan eventID is greater than 0
-      if (parseInt(body.eventID) > 0) {
+      // if (parseInt(body.eventID) > 0)
+      if (body.eventID || parseInt(body.eventID) >= 1) {
         let invites = await db.Invites.findAll({
           where: {
             eventID: body.eventID
@@ -52,7 +54,7 @@ module.exports = function (app, db) {
 
             let result = await db.Users.create(body);
             //user is admin and will create event
-            res.send({redirect: `/event/${result.eventID}`});
+            res.send({ redirect: `/event/${result.eventID}` });
 
             break;
           } else {
@@ -65,8 +67,9 @@ module.exports = function (app, db) {
       } else {
         res.send({ redirect: '/admin/addevent' });
       }
+      
     } catch (error) {
-      console.log(error);
+      console.log('fuckin error',error);
       res.sendStatus(500);
     }
   });
