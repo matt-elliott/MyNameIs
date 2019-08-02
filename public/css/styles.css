@@ -1,4 +1,28 @@
 body {
-  background-color: #333;
-  color: #efefef;  
+  background-color:#333;
+  color: #efefef;
 }
+html {
+  touch-action: none; 
+}
+#hr1{
+  border-color: cyan
+}
+
+.jumbotron{
+width: 100%
+}
+/* Small devices (portrait tablets and large phones, 600px and up) */
+@media only screen and (max-width: 600px) {
+  #cards {
+      display: flex;
+      flex-direction: column;
+      padding: 28px;   
+    }
+
+    #jumboText{
+      font-size: 30px;
+      margin-top: 20%;
+    }
+}
+

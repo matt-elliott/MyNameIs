@@ -1,26 +1,38 @@
-<h2>Profile Page</h2>
-<hr>
-<h3>
-  {{user.first_name}}
-  {{user.last_name}}
-</h3>
-<figure style="float:left">
-  <img src="{{user.profile_img}}" alt="A Picture of {{user.first_name}}">
-</figure>
-<p><span class="strong">email:</span> {{user.email}}</p>
-<p><span class="strong">username:</span> {{user.username}}</p>
-<p><span class="strong">Joined:</span> {{user.createdAt}}</p>
-<hr>
-<h2>Events:</h2>
-<ul>
-  {{#each event}}
-  <li>
-    <p>
-      Event Name: {{name}}
-      <br>
-      Event Link: <a href="http://localhost:8080/event/{{id}}">{{name}}</a>
-    </p>
-  </li>
-  {{/each}}
-</ul>
+<div class="row">
+    <div class="col-12">
+        <div class="jumbotron jumbotron mb-5 mt-2 p-3">
+            <div class="container">
+                <h1 class="display-4 text-dark text-center">
+                  <strong>{{user.first_name}} {{user.last_name}}</strong>
+                </h1>
+            </div>
+        </div>
+    </div>
+</div>
 
+<div class="container">
+    <div class="row" id="cards">
+        <div class="col-s-0 col-md-4 col-lg-5"></div>
+        <div class="card col-sm-12 col-md-4 col-lg-3" style="width: 18rem;">
+            <img class="card-img-top" src="{{user.profile_img}}" alt="A Picture of {{user.first_name}}">
+            <div class="card-body">
+                <p class="card-text text-dark">Email :{{user.email}}</p>
+                <p class="card-text text-dark">Joined On :{{user.createdAt}}</p>
+            </div>
+        </div>
+        <div class="col-s-0 col-md-4 col-lg-3">
+          <h2>Events:</h2>
+          <ul>
+            {{#each event}}
+            <li>
+              <p>
+                Event Name: {{name}}
+                <br>
+                Event Link: <a href="http://localhost:8080/event/{{id}}">{{name}}</a>
+              </p>
+            </li>
+            {{/each}}
+          </ul>
+        </div>
+    </div>
+</div>

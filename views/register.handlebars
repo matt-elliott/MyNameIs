@@ -1,35 +1,75 @@
-<h2>Registration Page</h2>
 <div class="row">
-  <form id="registration-form" class="col-4">
-    <label for="first_name">First Name:</label>
-    <input name="first_name" placeholder="Jason" type="text">
-    <br>
-    <label for="last_name">Last Name:</label>
-    <input name="last_name" placeholder="Voorhes" type="text">
-    <br>
-    {{#if data.emailAddress}}
-      <label for="email">Email:</label>
-      <input name="email" value="{{data.emailAddress}}" type="text" disabled="disabled">
-      {{else}}
-      <label for="email">Email:</label>
-      <input name="email" placeholder="jHoorves@gmail.com" type="text">
-    {{/if}}
-    
-    <label for="username">Display Name:</label>
-    <input name="username" placeholder="jHoorves@gmail.com" type="text">
-    <br>
-    <label for="password">Password:</label>
-    <input name="password" placeholder="********" type="password">
-    <br>
-    <label for="profile_image">URL to Profile Picture</label>
-    <input name="profile_image" placeholder="https://i.imgur.com/wvsuPQW.gif" type="text">
-    <br>
-    <input type="hidden" name="eventID" value="{{data.eventID}}">
-    <br>
+  <div class="col-12">
+    <div class="jumbotron jumbotron mb-5 mt-2 p-3">
+      <div class="container">
+        <h1 class="display-4 text-dark text-center"><strong>Registration Page</strong></h1>
+      </div>
+    </div>
+  </div>
+</div>
+
+<form id="add-event">
+
+  <div class="container">
+    <div class="form-group row">
+      <label for="first_name" class="col-sm-2 col-form-label"> First Name:</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" name="first_name" placeholder="Jason">
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="form-group row">
+      <label for="last_name" class="col-sm-2 col-form-label"> Last Name:</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" name="last_name" placeholder="Voohers">
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="form-group row">
+      <label for="email" class="col-sm-2 col-form-label"> Last Name:</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" name="email" placeholder="jHoorves@gmail.com">
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="form-group row">
+      <label for="username" class="col-sm-2 col-form-label"> Display Name:</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" name="username" placeholder="jHoorves@gmail.com">
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="form-group row">
+      <label for="password" class="col-sm-2 col-form-label">Password:</label>
+      <div class="col-sm-10">
+        <input type="password" class="form-control" name="password" placeholder="******">
+      </div>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="form-group row">
+      <label for="profile_image" class="col-sm-2 col-form-label">URL to Profile Picture:</label>
+      <div class="col-sm-10">
+        <input type="text" class="form-control" name="profile_image" placeholder="https://i.imgur.com/wvsuPQW.gif">
+      </div>
+    </div>
+  </div>
+     <input type="hidden" name="eventID" value="{{data.eventID}}">
+  <div class="text-center">
     <input type="submit" value="Create Event" class="btn btn-primary">
-    <button type="button" class="btn btn-primary">Find  Existing Event</button>
-  </form>
-  <div class="col-8">
+    <button type="button" class="btn btn-primary">Find Existing Event</button>
+  </div>
+</form>
+<div class="col-8">
     {{#if data.events}}
       <h2>{{data.events.name}}</h2>
       <h4>
