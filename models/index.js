@@ -1,8 +1,7 @@
 const config = require('../config/config');
 const Sequelize = require('sequelize');
-
 const sequelize = new Sequelize(
-  config[process.env.ENV]
+  config[process.env.NODE_ENV]
 );
 
 const Events = require('./events')(sequelize, Sequelize);

@@ -3,8 +3,8 @@ const config = {
   development: {
     database: process.env.DB,
     host: process.env.HOST,
-    username: process.env.USERNAME,
-    password: process.env.PASSWORD,
+    username: process.env.DB_USER,
+    password: process.env.DB_PASS,
     port: process.env.DB_PORT,
     dialect: 'mysql',
     logging: false
