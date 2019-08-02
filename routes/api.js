@@ -18,7 +18,7 @@ module.exports = function (app, db) {
         redirect: `/admin/invite/${result.dataValues.id}`
       });
     } catch (error) {
-      console.log(error);
+      console.log(cholk.bgRed.white.bold(error));
       res.sendStatus(500);
     }
   });
@@ -42,6 +42,7 @@ module.exports = function (app, db) {
           let i = 0;
 
           for (i; i < invitesLength; i++) {
+
             if (invites[i].email === body.email) {
               let id = invites[i].id;
               let updated = await db.Invites.update({
@@ -52,32 +53,26 @@ module.exports = function (app, db) {
                   }
                 }
               );
-              console.log(updated);
               
               let result = await db.Users.create(body);
-              console.log(result);
-              
+              console.log(chalk.bgGreen.white.bold('Invited User Sign Up Completed'));
               //user is admin and will create event
               res.send({ redirect: `/event/${result.eventID}` });
-
-              break;
             } else {
               console.log(chalk.bgRed.white('You`re not invited!'));
-              break;
             };
-            //breaking after first match in case of dues
             //todo hand dupes better ^^^
           }
         } catch (error) {
-          console.log('\n', error);
+          console.log(chalk.bgRed.white.bold('\n', error, '\n'));
         }
       } else {
-        console.log(chalk.bgBlue.white.bold('Admin User Created. Going to Add Event.'));
+        console.log(chalk.bgBlue.white.bold('Creating Admin User.'));
         if (body.eventID === '') body.eventID = 0;
       
         try {
           let result = await db.Users.create(body);
-          console.log(result);
+          console.log(chalk.bgGreen.white.bold('Admin User Created.')); 
           res.send({ redirect: '/admin/addevent' });
           
         } catch (error) {
@@ -105,7 +100,7 @@ module.exports = function (app, db) {
       Emitter.emit('invites-table-updated');
       res.send({ redirect: `/event/${eventID}` });
     } catch (error) {
-      console.log(error);
+      console.log(chalk.bgRed.white.bold(error));
       res.sendStatus(500);
     }
 

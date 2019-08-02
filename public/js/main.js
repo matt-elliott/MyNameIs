@@ -9,7 +9,8 @@
       console.log(data);  
     } else {
       data = $(this)[0][0].value.split(',');
-      data.forEach(function (index, item) {
+      data.forEach(function (item, index) {
+        console.log(index);
         data[index] = item.trim();
       });
       data = {data};
