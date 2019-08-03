@@ -35,10 +35,18 @@
     }
     
     $.post(queryURL, data, function (res) {
-      console.log('posted : ', res);
-      if(res.redirect) {
+      console.log('res ', res);
+
+      if (res.redirect) {
         window.location = res.redirect;
+      } else if (res.loggedin) {
+        //todo use momentjs to get current date time and add one week
+        let id = res.data.id;
+        document.cookie = `userID=${id}; expires: Saturday, August 10, 2019 UTC`;
+
+        window.location = `/user/${id}`;
       }
-    },);
+      
+    });
   });
 })();

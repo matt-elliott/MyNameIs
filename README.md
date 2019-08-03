@@ -1,9 +1,9 @@
-# MyNameIs
+# My Name Is
 An event management app that helps your attendees get to know each other. A digital "My Name Is" badge.
 
 
-##### APP FLOW
-###### admin user
+### APP FLOW
+#### Admin user
 1. admin user logs in to site / signs up and creates profile
 2. admin user creates an event
 3. admin user adds emails of people to invite
@@ -11,9 +11,17 @@ An event management app that helps your attendees get to know each other. A digi
 5. admin user can now go back and check event page
 6. admin profile has my events : a list of previous events attended and created
 
-###### invited user
+#### Invited user
 1. user follows signup url to sign up page with event id in url
 2. creates profile and submits to app
 3. app links user to event
 4. user is presented with the event page 
 5. user can follow link to their profile and update info
+
+#### Login
+1. User inputs username and password
+2. If their account exists we add "loggedin" cookie. They now have access to their dashboard, profile page, and the create event page
+3. If their account doesnt exist display "try again" or "signup" prompts.
+
+---
+
