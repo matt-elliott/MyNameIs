@@ -18,7 +18,7 @@ module.exports = function (app, db) {
         redirect: `/admin/invite/${result.dataValues.id}`
       });
     } catch (error) {
-      console.log(cholk.bgRed.white.bold(error));
+      console.log(chalk.bgRed.white.bold(error));
       res.sendStatus(500);
     }
   });

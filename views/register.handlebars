@@ -8,21 +8,21 @@
     <div class="form-group row">
       <label for="first_name" class="col-sm-2 col-form-label"> First Name:</label>
       <div class="col-sm-10">
-        <input type="text" class="form-control" name="first_name" placeholder="Jason">
+        <input type="text" class="form-control" name="first_name" placeholder="Jason" required>
       </div>
     </div>
 
     <div class="form-group row">
       <label for="last_name" class="col-sm-2 col-form-label"> Last Name:</label>
       <div class="col-sm-10">
-        <input type="text" class="form-control" name="last_name" placeholder="Voohers">
+        <input type="text" class="form-control" name="last_name" placeholder="Voohers" required>
       </div>
     </div>
 
     <div class="form-group row">
       <label for="email" class="col-sm-2 col-form-label">Email:</label>
       <div class="col-sm-10">
-        <input type="text" class="form-control" name="email" placeholder="jHoorves@gmail.com">
+        <input type="text" class="form-control" name="email" placeholder="jHoorves@gmail.com" required>
       </div>
     </div>
 
@@ -30,14 +30,14 @@
     <div class="form-group row">
       <label for="username" class="col-sm-2 col-form-label">Display Name:</label>
       <div class="col-sm-10">
-        <input type="text" class="form-control" name="username" placeholder="jHoorves@gmail.com">
+        <input type="text" class="form-control" name="username" placeholder="jHoorves@gmail.com" required>
       </div>
     </div>
 
     <div class="form-group row">
       <label for="password" class="col-sm-2 col-form-label">Password:</label>
       <div class="col-sm-10">
-        <input type="password" class="form-control" name="password" placeholder="******">
+        <input type="password" class="form-control" name="password" placeholder="******" required>
       </div>
     </div>
 
@@ -57,24 +57,28 @@
 </form>
 
 <div class="col-8">
-  {{#if data.events}}
-  <h2>{{data.events.name}}</h2>
-  <h4>
-    <span>{{data.events.date}} : </span>
-    <span>{{data.events.start_time}}</span> —
-    <span>{{data.events.end_time}}</span>
-  </h4>
-  {{/if}}
-  <hr>
-
-  {{#if data.attendees}}
-  <ul>
-    {{#each data.attendees}}
-    <li>
-      <h5>{{email}}</h5>
-      <h6>{{status}}</h6>
-    </li>
-    {{/each}}
-  </ul>
-  {{/if}}
+    {{#if data.events}}
+      <h2>{{data.events.name}}</h2>
+      <h4>
+        <span>{{data.events.date}} : </span>
+        <span>{{data.events.start_time}}</span> —
+        <span>{{data.events.end_time}}</span>
+      </h4>
+    {{/if}}
+    <hr>
+    
+    {{#if data.attendees}}
+      <ul>
+        {{#each data.attendees}}
+          <li>
+            <h5>{{email}}</h5>
+            <h6>{{status}}</h6>
+          </li>
+        {{/each}}
+      </ul>
+    {{/if}}
+  </div>
 </div>
+<script>
+$("#add-event").validate();
+</script>
