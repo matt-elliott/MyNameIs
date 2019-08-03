@@ -107,4 +107,28 @@ module.exports = function (app, db) {
     //TODO have node listen to updates in invite list and send invites to new people?
     //TODO 
   });
+
+  app.post('/api/login/', async function ({body}, res) {
+    try {
+      let results = await db.Users.findAll({
+        where: {
+          username: body.username,
+          password: body.password
+        }
+      });
+
+      if (results[0].id) {
+        res.send({
+          loggedin: true,
+          data: results[0]
+        });
+      } else {
+        res.sendStatus(403);
+      }
+    } catch (error) {
+      console.log(chalk.bgRed.white.bold(error));
+      res.sendStatus(403);
+      return;
+    }
+  })
 }
