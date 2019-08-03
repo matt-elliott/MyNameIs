@@ -13,7 +13,7 @@
   <div class="container">
     <div class="form-group">
       <h3 for="invite">Enter email addresses seperated by coma's (,) to invite your team to your event.</h3>
-      <textarea class="form-control" name="invite" rows="5"></textarea>
+      <input type="text" required>
     </div>
 
     <div class="text-center">
@@ -23,3 +23,6 @@
   </div>
 
 </form>
+<script>
+$("#add-event").validate();
+</script>
