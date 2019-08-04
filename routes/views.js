@@ -112,16 +112,16 @@ module.exports = function (app, db) {
           id: dataValues.eventID,
         }
       });
+
       let adminEvents = await db.Events.findAll({
         where: {
           adminID: dataValues.id,
         }
       });
-      console.log(Events);
-      console.log(adminEvents);
+
       res.render('profile', {
           user: dataValues,
-          event: Events,
+          events: Events,
           adminEvents: adminEvents
       });
     } catch(error) {
