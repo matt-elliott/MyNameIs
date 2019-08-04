@@ -18,7 +18,7 @@ module.exports = function (app, db) {
         redirect: `/admin/invite/${result.dataValues.id}`
       });
     } catch (error) {
-      console.log(cholk.bgRed.white.bold(error));
+      console.log(chalk.bgRed.white.bold(error));
       res.sendStatus(500);
     }
   });
@@ -73,7 +73,11 @@ module.exports = function (app, db) {
         try {
           let result = await db.Users.create(body);
           console.log(chalk.bgGreen.white.bold('Admin User Created.')); 
-          res.send({ redirect: '/admin/addevent' });
+          res.send({ 
+            loggedin: true,
+            data: result,
+            redirect: '/admin/addevent'
+          });
           
         } catch (error) {
           console.log(chalk.bgRed.white(error));
@@ -107,4 +111,29 @@ module.exports = function (app, db) {
     //TODO have node listen to updates in invite list and send invites to new people?
     //TODO 
   });
+
+  app.post('/api/login/', async function ({body}, res) {
+    try {
+      let results = await db.Users.findAll({
+        where: {
+          username: body.username,
+          password: body.password
+        }
+      });
+      
+      if (results[0] === undefined) {
+        throw 'No users found matching credentials.'
+      } else {
+        res.send({
+          loggedin: true,
+          data: results[0],
+          status: 200
+        });
+      }
+    } catch (error) {
+      console.log(chalk.bgRed.white.bold('login error: ', error));
+      res.sendStatus(406);
+      return;
+    }
+  })
 }

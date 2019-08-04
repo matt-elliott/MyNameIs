@@ -2,6 +2,22 @@ const chalk = require('chalk');
 module.exports = function (app, db) {
   const Op = db.Sequelize.Op;
 
+  app.get(['/user/*', '/event/*', '/admin/*'], function({headers}, res, next) {
+    
+    if(
+        headers.cookie &&
+        headers.cookie.indexOf('userID') != -1
+    ) {
+      next();
+    } else {
+      res.redirect('/login/');
+    }
+  });
+
+  app.get('/login', function(req, res) {
+    res.render('login');
+  });
+
   app.get('/', function (req, res) {
     res.render('index');
   });
@@ -72,7 +88,12 @@ module.exports = function (app, db) {
           }
         }
       );
-      console.log(data.accepted_invites, eventID);
+      data.administrator = await db.Users.findOne({
+        where: {
+          id: data.events.adminID
+        }
+      });
+      
       res.render('event-page', data);  
     } catch (error) {
       console.log(error);
@@ -84,21 +105,33 @@ module.exports = function (app, db) {
     res.render('attendees');
   });
   app.get('/user/:userID/', async function ({params: {userID}}, res) {
-    let [{dataValues}] = await db.Users.findAll({
-      where: {
-        id: userID
-      }
-    });
-    console.log(dataValues.eventID);
-    let results = await db.Events.findAll({
-      where: {
-        id: dataValues.eventID
-      }
-    });
-    console.log(results);
-    res.render('profile', {
-        user: dataValues,
-        event: results
-    });
+    try {
+      let [{dataValues}] = await db.Users.findAll({
+        where: {
+          id: userID
+        }
+      });
+      
+      let Events = await db.Events.findAll({
+        where: {
+          id: dataValues.eventID,
+        }
+      });
+
+      let adminEvents = await db.Events.findAll({
+        where: {
+          adminID: dataValues.id,
+        }
+      });
+
+      res.render('profile', {
+          user: dataValues,
+          events: Events,
+          adminEvents: adminEvents
+      });
+    } catch(error) {
+      console.log(error);
+      res.render('login');
+    }
   })
 }
