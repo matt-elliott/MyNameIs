@@ -88,7 +88,12 @@ module.exports = function (app, db) {
           }
         }
       );
-      console.log(data.accepted_invites, eventID);
+      data.administrator = await db.Users.findOne({
+        where: {
+          id: data.events.adminID
+        }
+      });
+      
       res.render('event-page', data);  
     } catch (error) {
       console.log(error);
