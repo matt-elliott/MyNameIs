@@ -73,7 +73,11 @@ module.exports = function (app, db) {
         try {
           let result = await db.Users.create(body);
           console.log(chalk.bgGreen.white.bold('Admin User Created.')); 
-          res.send({ redirect: '/admin/addevent' });
+          res.send({ 
+            loggedin: true,
+            data: result,
+            redirect: '/admin/addevent'
+          });
           
         } catch (error) {
           console.log(chalk.bgRed.white(error));
@@ -109,7 +113,6 @@ module.exports = function (app, db) {
   });
 
   app.post('/api/login/', async function ({body}, res) {
-    console.log('logginin')
     try {
       let results = await db.Users.findAll({
         where: {
@@ -121,7 +124,6 @@ module.exports = function (app, db) {
       if (results[0] === undefined) {
         throw 'No users found matching credentials.'
       } else {
-        console.log('sending');
         res.send({
           loggedin: true,
           data: results[0],
