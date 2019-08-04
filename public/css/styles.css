@@ -19,8 +19,8 @@ html {
 
 .jumbotron{
 width: 100%;
-background:rgb(191, 218, 253), 
-
+background:rgb(236, 237, 238); 
+box-shadow: 0 10px 18px 0 rgba(0, 0, 0, 0.24),0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .card{
@@ -63,7 +63,7 @@ background:rgb(191, 218, 253),
 }
 
 h1, h2, h3, h4, p, span{
-  font-family: 'Righteous', cursive;
+  font-family: 'Bitter', serif;
 }
 
   h1 {
@@ -71,7 +71,7 @@ h1, h2, h3, h4, p, span{
   }
 
   .card{
-    background: rgb(189, 211, 209);
+  background: linear-gradient( rgb(164, 193, 241), rgb(164, 241, 241), rgb(250, 192, 240))
   }
 
   
