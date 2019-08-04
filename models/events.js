@@ -25,6 +25,9 @@ module.exports = function (sq, DataType) {
     end_time: {
       type: DataType.DATE,
       allowNull: false
+    },
+    admin: {
+      type: DataType.INTEGER
     }
   });
 
