@@ -1,4 +1,5 @@
 module.exports = function (sq, DataType) {
+  var moment = require("moment");
   const Events = sq.define('Events', {
     id: {
       type: DataType.INTEGER,
@@ -16,15 +17,24 @@ module.exports = function (sq, DataType) {
     },
     date: {
       type: DataType.DATE,
-      allowNull: false
+      allowNull: false,
+      get: function () {
+        return moment().format('MMMM Do YYYY, h:mm:ss a')
+      }
     },
     start_time: {
       type: DataType.DATE,
-      allowNull: false
+      allowNull: false,
+      get: function () {
+        return moment().format("HH:mm a")
+      }
     },
     end_time: {
       type: DataType.DATE,
-      allowNull: false
+      allowNull: false,
+      get: function () {
+        return moment().format("HH:mm a")
+      }
     },
     adminID: {
       type: DataType.INTEGER,
