@@ -37,15 +37,18 @@
     $.post(queryURL, data, function (res) {
       console.log('res ', res);
 
-      if (res.redirect) {
-        window.location = res.redirect;
-      } else if (res.loggedin) {
+      if (res.loggedin) {
+        console.log('logged irn');
         //todo use momentjs to get current date time and add one week
         let id = res.data.id;
-        document.cookie = `userID=${id}; expires: Saturday, August 10, 2019 UTC`;
-
-        window.location = `/user/${id}`;
-      }
+        document.cookie = `userID=${id}; expires: Saturday, August 10, 2019 UTC; path=/`;
+        setTimeout(function() {
+          window.location = `/user/${id}/`;
+        }, 2000)
+        
+      } else if (res.redirect) {
+        window.location = res.redirect;
+      };
       
     });
   });

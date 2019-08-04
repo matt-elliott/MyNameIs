@@ -3,7 +3,7 @@ module.exports = function (app, db) {
   const Op = db.Sequelize.Op;
 
   app.get(['/user/*', '/event/*', '/admin/*'], function({headers}, res, next) {
-    console.log('nope youre not logged in');
+    
     if(
         headers.cookie &&
         headers.cookie.indexOf('userID') != -1
