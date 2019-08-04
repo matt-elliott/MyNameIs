@@ -16,9 +16,11 @@
     </div>
   </div>
     <div class="row" id = "eventInfo">
-      <div class="col-s-0 col-md-4 col-lg-3 text-dark m-3">
-        <h2>Events:</h2>
+      {{#if events}}
+      <div class="col-xs-12 col-md-6 text-dark m-3">
+        <h2>Attending Events:</h2>
         <ul>
+          
           {{#each event}}
           <li>
             <p>
@@ -30,5 +32,20 @@
           {{/each}}
         </ul>
       </div>
+      {{/if}}
+      {{#if adminEvents}}
+      <div class="col-xs-12 col-md-6 text-dark m-3">
+        <h2>Administrating Events:</h2>
+        <ul>
+          {{#each adminEvents}}
+          <li>
+            <p>
+              <a href="http://localhost:8080/event/{{id}}">{{name}}</a>
+            </p>
+          </li>
+          {{/each}}
+        </ul>
+      </div>
+      {{/if}}
     </div>
 </div>
