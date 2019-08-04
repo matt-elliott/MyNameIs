@@ -26,8 +26,9 @@ module.exports = function (sq, DataType) {
       type: DataType.DATE,
       allowNull: false
     },
-    admin: {
-      type: DataType.INTEGER
+    adminID: {
+      type: DataType.INTEGER,
+      allowNull: false
     }
   });
 
