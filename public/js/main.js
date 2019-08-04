@@ -41,7 +41,6 @@
       console.log('res ', res);
 
       if (res.loggedin) {
-        console.log('logged irn');
         //todo use momentjs to get current date time and add one week
         let id = res.data.id;
         document.cookie = `userID=${id}; expires: Saturday, August 10, 2019 UTC; path=/`;
