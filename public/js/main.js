@@ -1,6 +1,29 @@
-(function() {
+(async function() {
+  
+  if(window.location.pathname === '/admin/addevent') {
+    const cookies = decodeURIComponent(document.cookie);
+    const splitCookies = cookies.split(';');
+    let userID;
+  
+    splitCookies.forEach(function(cookie) {
+      let cookieKey;
+      if(cookie.indexOf('userID') > -1) {
+        cookieKey = cookie.split('=');
+      }
+      userID = cookieKey[1];
+    });
+
+    let hiddenInput = `<input
+      type="hidden"
+      name="adminID"
+      value="${userID}">`;
+    console.log(hiddenInput);
+    $('#add-event').prepend(hiddenInput);
+  }
+  
   //todo hide with css to start - so it doesnt flash on pagelaod
   $('#error-messsage').hide();
+
   $('form').on('submit', function (event) {
     event.preventDefault();
 
