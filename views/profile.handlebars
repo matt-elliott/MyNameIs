@@ -21,12 +21,10 @@
         <h2>Attending Events:</h2>
         <ul>
           
-          {{#each event}}
+          {{#each events}}
           <li>
             <p>
-              Event Name: {{name}}
-              <br>
-              Event Link: <a href="http://localhost:8080/event/{{id}}">{{name}}</a>
+              <a href="http://localhost:8080/event/{{id}}">{{name}}</a>
             </p>
           </li>
           {{/each}}
