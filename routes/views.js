@@ -2,6 +2,22 @@ const chalk = require('chalk');
 module.exports = function (app, db) {
   const Op = db.Sequelize.Op;
 
+  app.get(['/user/*', '/event/*', '/admin/*'], function({headers}, res, next) {
+    
+    if(
+        headers.cookie &&
+        headers.cookie.indexOf('userID') != -1
+    ) {
+      next();
+    } else {
+      res.redirect('/login/');
+    }
+  });
+
+  app.get('/login', function(req, res) {
+    res.render('login');
+  });
+
   app.get('/', function (req, res) {
     res.render('index');
   });

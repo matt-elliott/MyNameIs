@@ -109,6 +109,7 @@ module.exports = function (app, db) {
   });
 
   app.post('/api/login/', async function ({body}, res) {
+    console.log('logginin')
     try {
       let results = await db.Users.findAll({
         where: {
@@ -118,9 +119,11 @@ module.exports = function (app, db) {
       });
 
       if (results[0].id) {
+        console.log('sending');
         res.send({
           loggedin: true,
-          data: results[0]
+          data: results[0],
+          status: 200
         });
       } else {
         res.sendStatus(403);
