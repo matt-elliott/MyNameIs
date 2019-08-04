@@ -117,20 +117,20 @@ module.exports = function (app, db) {
           password: body.password
         }
       });
-
-      if (results[0].id) {
+      
+      if (results[0] === undefined) {
+        throw 'No users found matching credentials.'
+      } else {
         console.log('sending');
         res.send({
           loggedin: true,
           data: results[0],
           status: 200
         });
-      } else {
-        res.sendStatus(403);
       }
     } catch (error) {
-      console.log(chalk.bgRed.white.bold(error));
-      res.sendStatus(403);
+      console.log(chalk.bgRed.white.bold('login error: ', error));
+      res.sendStatus(406);
       return;
     }
   })

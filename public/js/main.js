@@ -1,4 +1,6 @@
 (function() {
+  //todo hide with css to start - so it doesnt flash on pagelaod
+  $('#error-messsage').hide();
   $('form').on('submit', function (event) {
     event.preventDefault();
 
@@ -34,7 +36,8 @@
         break;
     }
     
-    $.post(queryURL, data, function (res) {
+    $.post(queryURL, data,
+      function (res) {
       console.log('res ', res);
 
       if (res.loggedin) {
@@ -48,8 +51,20 @@
         
       } else if (res.redirect) {
         window.location = res.redirect;
-      };
-      
-    });
+      }
+    }).fail(function(error) {
+      console.log('FAILURE: ',
+      error.status,
+      ' ',
+      error.statusText);
+      const errorText = 'Username and/or password not found. You may have forgotten your password or you might need to create an account';
+      alertUserOfFailure(errorText);
+    })
   });
+
+  function alertUserOfFailure(error) {
+    let p = $('#error-messsage p');
+    p.text(error);
+    $('#error-messsage').fadeIn('slow');
+  }
 })();
