@@ -9,7 +9,7 @@ const hbs = require('express-handlebars');
 const apiRoutes = require('./routes/api');
 const viewsRoutes = require('./routes/views');
 const db = require('./models');
-
+console.log(chalk.bgGreen.white.bold(process.env.NODE_ENV));
 app.engine("handlebars", hbs({ defaultLayout: "main" }));
 app.set("view engine", "handlebars");
 
