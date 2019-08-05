@@ -25,3 +25,8 @@ An event management app that helps your attendees get to know each other. A digi
 
 ---
 
+*#### TIME CONTROL
+X. first remove get functions from events model and leave it to receive datetime
+X. add momentjs to add event page
+x. have date, start time, and end time inputs receive strings
+6. on get event page translate UTC datetimes into HH:mm a MM/DD/YYYY format and send to front end*
