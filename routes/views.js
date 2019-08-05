@@ -71,9 +71,19 @@ module.exports = function (app, db) {
       //TODO USE JOIN TABLES TO GET A MORE COMPLETE DATA SET
       let data = await {};
       data.events = await db.Events.findByPk(eventID);
-     
-      data.events = moment(start_time).format('h:mm a');
-      data.events = moment(end_time).format('h:mm a');
+      //first we have to create the moment (time window) the event exists in
+      console.log(data.events.start_time);
+      const eventTime = moment(data.events.date).format('MM/DD/YYYY');
+      data.events.start_time = moment(
+        data.events.start_time +
+        ' ' +
+        data.events.date)
+      .format('LT');
+      data.events.end_time = moment(
+        data.events.end_time +
+        ' ' +
+        data.events.date)
+      .format('LT');
 
       data.pending_invites = await db.Invites.findAll(
         {
