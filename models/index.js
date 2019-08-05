@@ -1,12 +1,13 @@
 const config = require('../config/config');
 const Sequelize = require('sequelize');
 console.log('\n', process.env.use_heroku_db,'\n')
+let sequelize;
 if(process.env.use_heroku_db) {
-  const sequelize = new Sequelize(
+  sequelize = new Sequelize(
     process.env.JAWSDB_URL
   );
 } else {
-  const sequelize = new Sequelize(
+  sequelize = new Sequelize(
     config[process.env.NODE_ENV]
   );
 }
