@@ -1,4 +1,5 @@
 const chalk = require('chalk');
+const moment = require('moment')
 module.exports = function (app, db) {
   const Op = db.Sequelize.Op;
 
@@ -70,6 +71,21 @@ module.exports = function (app, db) {
       //TODO USE JOIN TABLES TO GET A MORE COMPLETE DATA SET
       let data = await {};
       data.events = await db.Events.findByPk(eventID);
+      const eventTime = data.events.date;
+      data.events.date = moment(data.events.date).format('dddd, MMMM Do YYYY');
+      data.events.start_time = moment(
+        data.events.start_time +
+        ' ' +
+        eventTime)
+      .format('LT');
+      data.events.end_time = moment(
+        data.events.end_time +
+        ' ' +
+        eventTime)
+      .format('LT');
+      
+      
+
       data.pending_invites = await db.Invites.findAll(
         {
           where: {
