@@ -1,6 +1,5 @@
 const config = require('../config/config');
 const Sequelize = require('sequelize');
-console.log('\n', process.env.use_heroku_db,'\n')
 let sequelize;
 if(process.env.use_heroku_db) {
   sequelize = new Sequelize(
